@@ -51,7 +51,6 @@ export class AuthService {
   }
 
   async signin(user: User) {
-    const payload = this.getPayload(user);
     return {
       ...user,
       accessToken: this.getToken(user),
@@ -60,8 +59,6 @@ export class AuthService {
   }
 
   async refreshToken(user: User) {
-    const payload = this.getPayload(user);
-
     return {
       accessToken: this.getToken(user),
     };
