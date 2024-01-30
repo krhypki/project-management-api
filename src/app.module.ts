@@ -5,17 +5,13 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import config from './config/database-config';
 
 @Module({
   imports: [
     UsersModule,
     ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db.sqlite',
-      autoLoadEntities: true,
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot({ ...config, autoLoadEntities: true }),
     AuthModule,
   ],
   controllers: [AppController],
