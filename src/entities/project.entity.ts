@@ -12,10 +12,10 @@ export class Project {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false, unique: true })
   name: string;
 
-  @Column()
+  @Column({ unique: true, nullable: false })
   code: string;
 
   @OneToOne(() => User)
