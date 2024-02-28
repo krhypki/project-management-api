@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Project } from '../entities/project.entity';
-import { ILike, Repository } from 'typeorm';
+import { FindOneOptions, ILike, Repository } from 'typeorm';
 
 @Injectable()
 export class ProjectsService {
@@ -13,11 +13,12 @@ export class ProjectsService {
     return this.repo.find();
   }
 
-  async findOne(code: string) {
+  async findOne(code: string, config?: Partial<FindOneOptions<Project>>) {
     const project = await this.repo.findOne({
       where: {
         code: ILike(`%${code}%`),
       },
+      ...config,
     });
 
     if (!project) {

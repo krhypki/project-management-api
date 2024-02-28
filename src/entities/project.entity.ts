@@ -4,8 +4,10 @@ import {
   Entity,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { User } from './user.entity';
+import { Task } from './task.entity';
 
 @Entity()
 export class Project {
@@ -21,4 +23,7 @@ export class Project {
   @OneToOne(() => User)
   @JoinColumn()
   owner: User;
+
+  @OneToMany(() => Task, (task) => task.project)
+  tasks: Task[];
 }

@@ -25,7 +25,7 @@ const projects = [
   },
 ];
 
-export class Projects1706537517499 implements MigrationInterface {
+export class Projects1706615990383 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     const usersRepo = queryRunner.manager.getRepository(User);
 

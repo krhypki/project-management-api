@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { ProjectsModule } from './projects/projects.module';
+import { TasksModule } from './tasks/tasks.module';
 import config from './config/database-config';
 
 @Module({
@@ -15,6 +16,7 @@ import config from './config/database-config';
     TypeOrmModule.forRoot({ ...config, autoLoadEntities: true }),
     AuthModule,
     ProjectsModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [AppService],

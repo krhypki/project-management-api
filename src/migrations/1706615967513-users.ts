@@ -28,8 +28,7 @@ const users = [
     lastName: 'Piotrowski',
   },
 ];
-
-export class Users1706537434175 implements MigrationInterface {
+export class Users1706615967513 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await Promise.all(
       users.map(async (user) => {

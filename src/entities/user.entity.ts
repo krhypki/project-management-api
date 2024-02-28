@@ -1,5 +1,12 @@
 import { Exclude } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Task } from './task.entity';
 
 @Entity()
 export class User {
@@ -18,4 +25,12 @@ export class User {
 
   @Column()
   lastName: string;
+
+  @OneToMany(() => Task, (task) => task.reporter, { nullable: true })
+  @JoinColumn({ name: 'reporter' })
+  reportedTasks?: Task[];
+
+  @OneToMany(() => Task, (task) => task.assignee, { nullable: true })
+  @JoinColumn({ name: 'assignee' })
+  assignedTasks?: Task[];
 }
