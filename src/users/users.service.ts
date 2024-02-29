@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { User } from '../entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -9,10 +9,18 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UsersService {
   constructor(
     @InjectRepository(User) private readonly repo: Repository<User>,
+    private readonly dataSource: DataSource,
   ) {}
 
-  async findOneWithEmail(email: string) {
-    return await this.repo.findOne({ where: { email } });
+  async findOneWithEmail(email: string, selectPassword = false) {
+    const user = await this.dataSource
+      .createQueryBuilder(User, 'user')
+      .select('user')
+      .where('user.email = :email', { email })
+      .addSelect(selectPassword ? 'user.password' : '')
+      .getOne();
+
+    return user;
   }
 
   create(dto: CreateUserDto) {

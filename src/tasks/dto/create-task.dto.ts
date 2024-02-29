@@ -1,10 +1,4 @@
-import {
-  IsDefined,
-  IsEmail,
-  IsIn,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { IsEmail, IsIn, IsOptional, IsString } from 'class-validator';
 import { TaskStatus } from '../../types/Task';
 
 export class CreateTaskDto {

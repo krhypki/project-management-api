@@ -108,4 +108,14 @@ export class TasksService {
       return obj;
     }, {}) as T;
   }
+
+  async findOne(code: string) {
+    const task = await this.repo.findOne({
+      where: {
+        code: ILike(`%${code}%`),
+      },
+    });
+
+    return task;
+  }
 }

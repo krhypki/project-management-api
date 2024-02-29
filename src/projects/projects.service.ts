@@ -10,13 +10,21 @@ export class ProjectsService {
   ) {}
 
   findAll() {
-    return this.repo.find();
+    return this.repo.find({
+      relations: {
+        owner: true,
+      },
+    });
   }
 
   async findOne(code: string, config?: Partial<FindOneOptions<Project>>) {
     const project = await this.repo.findOne({
       where: {
         code: ILike(`%${code}%`),
+      },
+      relations: {
+        owner: true,
+        tasks: true,
       },
       ...config,
     });
