@@ -64,6 +64,7 @@ export class TasksService {
 
     const updatedTask = this.repo.create({
       ...task,
+      ...body,
       ...relationsData,
       code,
     });
@@ -114,6 +115,7 @@ export class TasksService {
       where: {
         code: ILike(`%${code}%`),
       },
+      relations: ['reporter', 'assignee'],
     });
 
     return task;

@@ -22,11 +22,7 @@ export class ProjectsService {
       where: {
         code: ILike(`%${code}%`),
       },
-      relations: {
-        owner: true,
-        tasks: true,
-      },
-      ...config,
+      relations: ['owner', 'tasks', 'tasks.reporter', 'tasks.assignee'],
     });
 
     if (!project) {

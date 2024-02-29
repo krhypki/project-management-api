@@ -1,5 +1,6 @@
 import {
   Body,
+  Get,
   ClassSerializerInterceptor,
   Controller,
   Patch,
@@ -15,6 +16,11 @@ import { UsersService } from './users.service';
 @UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Get()
+  getAllUsers() {
+    return this.usersService.findAll();
+  }
 
   @UseGuards(JwtGuard)
   @Patch('update-password')

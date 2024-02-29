@@ -23,6 +23,16 @@ export class UsersService {
     return user;
   }
 
+  async findAll() {
+    const users = await this.repo.find({
+      select: ['email'],
+    });
+
+    return users.map((user) => {
+      return user.email;
+    });
+  }
+
   create(dto: CreateUserDto) {
     const user = this.repo.create(dto);
     return this.repo.save(user);

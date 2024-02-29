@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm:cli": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -d src/config/data-source.ts",
     "migration:generate": "typeorm migration:generate src/migrations/auto-generated -d dist/config/data-source.js",
+    "migration:create": "typeorm migration:create src/migrations/tasks",
     "migration:run": "rm -rf db.sqlite && rm -rf dist && npm run build && typeorm migration:run -d dist/config/data-source.js"
   },
   "dependencies": {
