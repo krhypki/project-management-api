@@ -120,4 +120,12 @@ export class TasksService {
 
     return task;
   }
+
+  async findAll() {
+    const tasks = await this.repo.find({
+      relations: ['reporter', 'assignee'],
+    });
+
+    return tasks;
+  }
 }

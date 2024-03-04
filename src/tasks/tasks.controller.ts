@@ -27,4 +27,9 @@ export class TasksController {
   getTask(@Param('code') code: string) {
     return this.tasksService.findOne(code);
   }
+
+  @Get()
+  getAllTasks() {
+    return this.tasksService.findAll();
+  }
 }

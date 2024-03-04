@@ -23,6 +23,12 @@ export class UsersController {
   }
 
   @UseGuards(JwtGuard)
+  @Get('/current-user')
+  getUser(@Request() request) {
+    return this.usersService.getUserWithTasks(request.user.email);
+  }
+
+  @UseGuards(JwtGuard)
   @Patch('update-password')
   updatePassword(
     @Request() request,

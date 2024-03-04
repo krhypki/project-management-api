@@ -23,6 +23,15 @@ export class UsersService {
     return user;
   }
 
+  async getUserWithTasks(email: string) {
+    const user = await this.repo.findOne({
+      where: { email },
+      relations: ['reportedTasks', 'assignedTasks'],
+    });
+
+    return user;
+  }
+
   async findAll() {
     const users = await this.repo.find({
       select: ['email'],

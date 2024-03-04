@@ -20,10 +20,10 @@ export class Task {
   @Column({ nullable: true })
   desc: string;
 
-  @ManyToOne(() => User, (user) => user.reportedTasks)
+  @ManyToOne(() => User, (user) => user.reportedTasks, { eager: true })
   reporter: User;
 
-  @ManyToOne(() => User, (user) => user.assignedTasks)
+  @ManyToOne(() => User, (user) => user.assignedTasks, { eager: true })
   assignee: User;
 
   @ManyToOne(() => Project, (project) => project.tasks)

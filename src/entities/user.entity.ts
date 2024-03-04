@@ -25,7 +25,9 @@ export class User {
   @Column()
   lastName: string;
 
-  @OneToMany(() => Task, (task) => task.reporter, { nullable: true })
+  @OneToMany(() => Task, (task) => task.reporter, {
+    nullable: true,
+  })
   @JoinColumn({ name: 'reporter' })
   reportedTasks?: Task[];
 
